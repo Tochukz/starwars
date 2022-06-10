@@ -39,7 +39,8 @@ export const getPeople = (page: number = 0, name: string = '') => async (dispatc
            height,
            mass,
            gender,
-           homeworld
+           homeworld,
+           personId,
         }
       }
      `;
