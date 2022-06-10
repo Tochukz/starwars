@@ -4,4 +4,5 @@ export interface IPerson {
   mass: string;
   gender: string;
   homeworld: string;
+  personId: number,
 }

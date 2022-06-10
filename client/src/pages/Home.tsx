@@ -1,38 +1,50 @@
-import { useEffect, useState } from "react";
-import { gql } from "graphql-request";
-import { Query }  from "../services";
+import { useEffect } from "react";
+import { connect } from "react-redux";
+
+import Base from '../layout/Base';
+import Pagination from "../components/Pagination";
+import Person from "../components/Person";
 import { IPerson } from "../interfaces/iPerson";
+import { getPeople } from '../store/slices/people.slice';
 
-export default function Home() {
-  const [people, setPeople] = useState([]);
 
-  const peopleQuery = gql` {
-     people(page: 1) {
-        name, 
-        height,
-        mass,
-        gender,
-        homeworld
-     }
-   }
-  `;
+function Home(props: {people: IPerson[], queryPeople: Function}) {
 
   useEffect(() => {
-    Query(peopleQuery)
-         .then(response => {           
-            setPeople(response.people);
-         })
-         .catch(err => {
-             console.error('err', err);
-         })
+    getPeople(1);
   }, []);
 
+  const getPeople = (page: number = 0, name: string = '') => {
+    props.queryPeople(page, name)
+         .then()
+         .catch((err: any) => {
+             console.error('err', err);
+         })
+  }
 
   return (
-    <div>
-        { people.map((person: IPerson, i: number) => 
-          <p key={i}>{ person.name } </p>
-        )}
-    </div>
+    <Base>
+      <div className="home row">
+          <div className="col-sm-12">
+            <Pagination pageMeta={{current: 1}} />
+          </div>
+          { props.people.map((person: IPerson, i: number) => 
+            <Person person={person} key={i} />
+          )}
+          <div className="col-sm-12">
+            <Pagination pageMeta={{current: 1}} />
+          </div>
+      </div>
+    </Base>
   )
 }
+
+const mapStateToProps = (state: any) => ({
+  people: state.people.people || [],
+});
+
+const mapDispatchToProps = {
+  queryPeople: getPeople,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

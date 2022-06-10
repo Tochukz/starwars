@@ -1,0 +1,15 @@
+@import './colors.scss';
+
+.person {
+  a {
+    text-decoration: none;
+    .card{
+      margin-bottom: 1em;
+      h4 {
+        background: $ash;
+        color: $white;
+        padding: 0.5em;
+      }
+    }
+  }
+}
