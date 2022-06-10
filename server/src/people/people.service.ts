@@ -13,7 +13,6 @@ export class PeopleService {
     } else if(name) {
       path = `people?search=${name}`;
     }
-    console.log('path', path);
     const response = await this.requestService.get(path);
     const people = response.data?.results.map(person => {
        const {name, height, mass, gender, homeworld, url} = person;
@@ -22,7 +21,6 @@ export class PeopleService {
          const bits = url.split('/');
          personId = bits[bits.length - 2];
        }
-       console.log('personId', personId);
        return {name, height, mass, gender, homeworld, personId};
     });
     return people || [];
