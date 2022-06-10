@@ -11,6 +11,7 @@ import { PeopleModule } from './people/people.module';
 import { RequestModule } from './request/request.module';
 import { PeopleResolver } from './people/people.resolver';
 import { GeneralExceptionFilter } from './filters/general-exception.filter';
+import { DetailsModule } from './details/details.module';
 
 
 @Module({
@@ -27,6 +28,7 @@ import { GeneralExceptionFilter } from './filters/general-exception.filter';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
+    DetailsModule,
   ],
   controllers: [AppController],
   providers: [

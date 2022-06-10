@@ -10,8 +10,8 @@ const slice = createSlice({
   initialState: composeInitial('people'),
   reducers: {
     setPeople(state: any, action)  {
-      state.movies = action.payload;
-      putInStore('people', 'people', state.movies);
+      state.people = action.payload;
+      putInStore('people', 'people', state.people);
     },
     setSearchResult(state: any, action) {
       state.searchResult = action.payload;
