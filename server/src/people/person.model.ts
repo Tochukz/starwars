@@ -17,4 +17,7 @@ export class Person {
 
     @Field(type => String)
     homeworld: string;
+
+    @Field(type => String)
+    personId: string; 
 }
