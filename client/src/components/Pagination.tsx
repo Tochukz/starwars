@@ -7,7 +7,7 @@ export default function Pagination({ pageMeta }: {pageMeta: any}) {
 
     const pages = () => {
       const elements = [];
-      for(let i = 1; i <= 10; i++) {
+      for(let i = 1; i < 10; i++) {
         elements.push(i);
       }
       return elements;
@@ -42,7 +42,7 @@ export default function Pagination({ pageMeta }: {pageMeta: any}) {
       {
         pages().map((page: any) => 
           <li  className="page-item" key={page}>
-            <Link to={`/pages/${page}`} 
+            <Link to={`/page/${page}`} 
                   className={`page-link ${params.page == page? 'active' : ''}`}>{ page }</Link>
           </li>
         )
